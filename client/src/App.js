@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, AppBar, Typography, Grow, Grid } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 //utils
@@ -11,11 +11,15 @@ import useStyles from './styles.js';
 //images
 import echoLogo from './images/echo-logo.jpg';
 const App = () => {
+
+    const [currentId, setCurrentId] = useState(null);
+
     const classes = useStyles();
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(getPosts());
+        console.log('fetching posts');
     },[dispatch]);
 
     return(
@@ -33,14 +37,14 @@ const App = () => {
             </AppBar>
             <Grow in>
                 <Container>
-                    <Grid container justifyContent="space-between"
+                    <Grid className={classes.mainContainer} container justifyContent="space-between"
                     alignItems="stretch"
                     spacing={3}>
                         <Grid item cs={12} sm={7}>
-                            <Posts />
+                            <Posts setCurrentId={setCurrentId}/>
                         </Grid>
                         <Grid item cs={12} sm={4}>
-                            <Form />
+                            <Form currentId={currentId} setCurrentId={setCurrentId}/>
                         </Grid>
                     </Grid>
                 </Container>
