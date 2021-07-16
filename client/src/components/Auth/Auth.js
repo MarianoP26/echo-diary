@@ -45,7 +45,7 @@ const Auth = () => {
 
 	const switchMode = () => {
 		setIsSignup((prevIsSignup) => !prevIsSignup);
-		handleShowPassword(false);
+		setShowPassword(false);
 	};
 
 	const googleSuccess = async (res) => {
@@ -74,7 +74,7 @@ const Auth = () => {
 				<Typography variant="h5">
 					{isSignup ? 'Sign Up' : 'Sign In'}
 				</Typography>
-				<form className={classes.form} onSubmit={(e)=>handleSubmit}>
+				<form className={classes.form} onSubmit={handleSubmit}>
 					<Grid container spacing={2}>
 						{
 							isSignup && (
